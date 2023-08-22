@@ -19,8 +19,8 @@ set $up k
 set $right l
 
 # Variables
-set $term alacritty
-set $menu rofi -show drun -show-icons
+set $term foot
+set $menu wofi -S drun -I
 
 ### Output configuration
 output * bg ~/builds/wallpaper/fractal.jpg fill
@@ -64,8 +64,8 @@ output * bg ~/builds/wallpaper/fractal.jpg fill
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+n exec pcmanfm
-    bindsym $mod+b exec flatpak run com.brave.Browser
+    bindsym $mod+n exec thunar
+    bindsym $mod+b exec brave
     # Kill focused window
     bindsym $mod+x kill
 
