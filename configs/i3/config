@@ -24,8 +24,8 @@ bindsym $mod+Return exec --no-startup-id st
 
 # custom binds
 #bindsym $mod+Escape exec i3-instant-layout --list | rofi -dmenu -i
-bindsym $mod+b exec --no-startup-id flatpak run com.brave.Browser
-bindsym $mod+n exec --no-startup-id pcmanfm
+bindsym $mod+b exec --no-startup-id brave
+bindsym $mod+n exec --no-startup-id thunar
 bindsym $mod+g exec --no-startup-id flatpak run com.usebottles.bottles
 
 for_window [class="battle.net.exe"] floating enable
