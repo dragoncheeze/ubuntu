@@ -11,7 +11,9 @@ default_floating_border pixel 5
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id picom
 exec --no-startup-id lxpolkit
-exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id autotiling
+exec --no-startup-id feh --bg-fill ~/builds/wallpaper/astro.jpg
+#exec --no-startup-id nitrogen --restore
 #exec --no-startup-id nm-applet
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -22,12 +24,13 @@ bindsym $mod+Return exec --no-startup-id st
 
 # custom binds
 #bindsym $mod+Escape exec i3-instant-layout --list | rofi -dmenu -i
-bindsym $mod+b exec --no-startup-id brave-browser
+bindsym $mod+b exec --no-startup-id flatpak run com.brave.Browser
 bindsym $mod+n exec --no-startup-id pcmanfm
-bindsym $mod+g exec --no-startup-id lutris
+bindsym $mod+g exec --no-startup-id flatpak run com.usebottles.bottles
 
 for_window [class="battle.net.exe"] floating enable
 for_window [class="Lutris"] floating enable
+for_window [class="bottles"] floating enable
 for_window [class="Galculator"] floating enable
 # kill focused window
 bindsym $mod+x kill

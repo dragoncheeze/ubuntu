@@ -8,9 +8,10 @@
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-exec waybar
 exec lxpolkit
 exec_always autotiling
+exec waybar
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -18,11 +19,11 @@ set $up k
 set $right l
 
 # Variables
-set $term foot
-set $menu wofi -S drun -I
+set $term alacritty
+set $menu rofi -show drun -show-icons
 
 ### Output configuration
-output * bg ~/builds/dotfiles/themes/wallpaper/fractal.jpg fill
+output * bg ~/builds/wallpaper/fractal.jpg fill
 
 # Example configuration:
 #
@@ -63,8 +64,8 @@ output * bg ~/builds/dotfiles/themes/wallpaper/fractal.jpg fill
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+n exec thunar
-    bindsym $mod+b exec firefox
+    bindsym $mod+n exec pcmanfm
+    bindsym $mod+b exec flatpak run com.brave.Browser
     # Kill focused window
     bindsym $mod+x kill
 
@@ -196,14 +197,16 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+## Status Bar:
+#bar {
+#    position top
+#    status_command i3status
+#    font pango:Ubuntu:size 12
+#}
 
-default_border pixel 5
-default_floating_border pixel 5
-gaps inner 10
+default_border pixel 2
+default_floating_border pixel 2
+gaps inner 5
 gaps outer 0
 
 include ~/.config/sway/conf.d/*
