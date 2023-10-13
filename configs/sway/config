@@ -10,7 +10,6 @@
 set $mod Mod4
 exec lxpolkit
 exec_always autotiling
-exec waybar
 
 # Home row direction keys, like vim
 set $left h
@@ -65,7 +64,7 @@ output * bg ~/builds/wallpaper/fractal.jpg fill
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+n exec thunar
-    bindsym $mod+b exec brave
+    bindsym $mod+b exec flatpak run com.brave.Browser
     # Kill focused window
     bindsym $mod+x kill
 
@@ -198,11 +197,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ## Status Bar:
-#bar {
-#    position top
-#    status_command i3status
-#    font pango:Ubuntu:size 12
-#}
+bar {
+    position top
+    status_command i3status
+    font pango:Ubuntu:size 12
+}
 
 default_border pixel 2
 default_floating_border pixel 2
