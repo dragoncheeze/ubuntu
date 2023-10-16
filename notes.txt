@@ -1,0 +1,5 @@
+## Notes for debootstrap
+
+for d in sys dev proc ; do mount --rbind /$d /mnt/$d && mount --make-rslave /mnt/$d ; done
+
+blkid | grep sda >> /etc/fstab
