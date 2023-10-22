@@ -4,6 +4,7 @@ for d in sys dev proc ; do mount --rbind /$d /mnt/$d && mount --make-rslave /mnt
 
 blkid | grep sda >> /etc/fstab
 
+## nvidia gdm
 ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
 ## kernel stuff
@@ -25,3 +26,10 @@ deb http://us.archive.ubuntu.com/ubuntu jammy-backports main restricted universe
 deb http://us.archive.ubuntu.com/ubuntu jammy-proposed main restricted universe multiverse
 deb http://us.archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
 deb http://us.archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+
+## network for LTS
+/etc/netplan/networkmanager.yaml
+
+network:
+  version: 2
+  renderer: NetworkManager
