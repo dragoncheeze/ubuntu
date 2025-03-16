@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo dpkg --add-architeture i386 && sudo apt update &&
+sudo dpkg --add-architecture i386 && sudo apt update &&
 sudo apt install sway swaybg swaylock swayidle \
     python3-i3ipc seatd dunst light playerctl \
     i3status pipewire-audio nwg-look fwupd libfuse2t64 \
