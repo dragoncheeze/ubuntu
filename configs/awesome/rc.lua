@@ -254,31 +254,43 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-
-    awful.key({ modkey,           }, "j",
+-- movement
+     awful.key({ modkey,           }, "h",
         function ()
-            awful.client.focus.byidx( 1)
+            awful.client.focus.global_bydirection("left")
         end,
-        {description = "focus next by index", group = "client"}
+        {group = "client"}
+    ),
+    awful.key({ modkey,           }, "l",
+        function ()
+            awful.client.focus.global_bydirection("right")
+        end,
+        {group = "client"}
+    ),   awful.key({ modkey,           }, "j",
+        function ()
+            awful.client.focus.global_bydirection("down")
+        end,
+        {group = "client"}
     ),
     awful.key({ modkey,           }, "k",
         function ()
-            awful.client.focus.byidx(-1)
+            awful.client.focus.global_bydirection("up")
         end,
-        {description = "focus previous by index", group = "client"}
+        {group = "client"}
     ),
+
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
+    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.global_bydirection("down")    end,
               {description = "swap with next client by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
+    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.global_bydirection("up")    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
+    awful.key({ modkey, "Shift"   }, "h", function () awful.client.swap.global_bydirection("left")    end,
+              {description = "swap with next client by index", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "l", function () awful.client.swap.global_bydirection("right")    end,
+              {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
@@ -297,15 +309,6 @@ globalkeys = gears.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
-              {description = "increase the number of master clients", group = "layout"}),
-    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
-              {description = "decrease the number of master clients", group = "layout"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
@@ -328,11 +331,6 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "n",     function () awful.util.spawn("pcmanfm") end,
-              {description = "pcmanfm", group = "applications"}),
-    awful.key({ modkey },            "b",     function () awful.util.spawn("brave-browser") end,
-              {description = "brave", group = "applications"}),
-
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
 
@@ -479,7 +477,9 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
-
+    -- Fullscreen clients.
+    { rule = { class = "wow.exe" },
+    properties = {fullscreen = true}},
     -- Floating clients.
     { rule_any = {
         instance = {
@@ -494,6 +494,8 @@ awful.rules.rules = {
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
+          "battle.net.exe",
+          "Lutris",
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
@@ -586,11 +588,21 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = "#282828" end)
 -- }}}
 
+-- fix fullscreen
+client.connect_signal("property::fullscreen", function(c)
+  if c.fullscreen then
+    gears.timer.delayed_call(function()
+      if c.valid then
+        c:geometry(c.screen.geometry)
+      end
+    end)
+  end
+end)
+
 -- Gaps
 beautiful.useless_gap = 3
 
 -- Autostart Apps
-awful.spawn.with_shell("picom")
+--awful.spawn.with_shell("picom")
 awful.spawn.with_shell("lxpolkit")
-awful.spawn.with_shell("cbatticon")
-awful.spawn.with_shell("volumeicon")
+awful.spawn.with_shell("sxhkd -c ~/.config/awesome/sxhkdrc")

@@ -1,12 +1,15 @@
-# Config for sway
+# Default config for sway
 #
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+font pango:monospace 16
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 exec lxpolkit
 exec_always autotiling
-
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -18,7 +21,40 @@ set $term foot
 set $menu rofi -show drun -show-icons
 
 ### Output configuration
-output * bg ~/builds/wallpaper/fractal.jpg fill
+output * bg ~/builds/dotfiles/minimal-wallpaper/outrun.jpg fill mode 1920x1080@75Hz max_render_time 5
+
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+#   input "2:14:SynPS/2_Synaptics_TouchPad" {
+#       dwt enabled
+#       tap enabled
+#       natural_scroll enabled
+#       middle_emulation enabled
+#   }
+#
+# You can get the names of your inputs by running: swaymsg -t get_inputs
+# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 #
@@ -27,7 +63,8 @@ output * bg ~/builds/wallpaper/fractal.jpg fill
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+n exec thunar
-    bindsym $mod+b exec brave-browser
+    bindsym $mod+g exec lutris
+    bindsym $mod+b exec brave
     # Kill focused window
     bindsym $mod+x kill
 
@@ -158,17 +195,28 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-## Status Bar:
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
     status_command i3status
-    font pango:Ubuntu:size 10
-}
+    #status_command while date +'%a-%b-%d %l:%M %p'; do sleep 1; done
 
-default_border pixel 2
-default_floating_border pixel 2
-gaps inner 5
+    colors {
+	statusline #ffffff
+        background #000000
+        focused_workspace  #77dd77 #200689 #ffffff
+        inactive_workspace #000000 #222222 #ffffff
+    }
+}
+#
+# gaps
+default_border pixel 5
+default_floating_border pixel 5
+gaps inner 10
 gaps outer 0
 
 include ~/.config/sway/conf.d/*
+include /etc/sway/config.d/*
