@@ -8,5 +8,6 @@ sudo apt install xserver-xorg xorg lxpolkit rsync gtk2-engines-murrine \
     papirus-icon-theme pcmanfm xarchiver rofi libxft-dev libx11-dev libxinerama-dev \
     galculator geany dunst libnotify-bin suckless-tools build-essential curl \
     wget sxiv scrot feh htop mpv synaptic gamemode wine picom fwupd libglib2.0-bin \
-    i3status python3-i3ipc playerctl cups pipewire-audio libncurses-dev -y
+    i3status python3-i3ipc playerctl cups pipewire-audio libncurses-dev \
+    software-properties-common -y
 

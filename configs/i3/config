@@ -8,11 +8,11 @@ gaps outer 0
 default_border pixel 5
 default_floating_border pixel 5
 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id lxpolkit
 exec --no-startup-id picom
 exec_always --no-startup-id autotiling
-exec --no-startup-id feh --bg-fill ~/builds/dotfiles/minimal-wallpaper/outrun.jpg
+exec --no-startup-id feh --bg-fill ~/builds/ubuntu/wallpaper/outrun.jpg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -22,9 +22,9 @@ bindsym $mod+Return exec --no-startup-id st
 
 # custom binds
 #bindsym $mod+Escape exec i3-instant-layout --list | rofi -dmenu -i
-bindsym $mod+b exec --no-startup-id flatpak run org.mozilla.firefox
+bindsym $mod+b exec --no-startup-id brave-browser
 bindsym $mod+n exec --no-startup-id pcmanfm
-bindsym $mod+g exec --no-startup-id flatpak run net.lutris.Lutris
+bindsym $mod+g exec --no-startup-id battle
 
 #kill focused window
 bindsym $mod+x kill

@@ -7,4 +7,4 @@ sudo apt install sway swaybg swaylock swayidle \
     papirus-icon-theme arc-theme rofi fonts-dejavu fonts-font-awesome \
     fonts-liberation2 fonts-noto fonts-roboto lxpolkit libglib2.0-bin xwayland \
     file-roller pcmanfm cups galculator build-essential gamemode imv \
-    xdg-desktop-portal-gtk wine -y
+    xdg-desktop-portal-gtk wine software-properties-common -y
