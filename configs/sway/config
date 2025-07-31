@@ -21,7 +21,7 @@ set $term foot
 set $menu fuzzel 
 
 ### Output configuration
-output * bg ~/builds/dotfiles/wallpaper/outrun.jpg fill mode 1920x1080@75Hz max_render_time 10
+output * bg ~/builds/ubuntu/wallpaper/outrun.jpg fill mode 1920x1080@75Hz max_render_time 10
 
 # Example configuration:
 #
@@ -62,9 +62,9 @@ output * bg ~/builds/dotfiles/wallpaper/outrun.jpg fill mode 1920x1080@75Hz max_
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+n exec thunar
-    bindsym $mod+g exec lutris
-    bindsym $mod+b exec brave
+    bindsym $mod+n exec pcmanfm 
+    bindsym $mod+g exec flaptak run net.lutris.Lutris
+    bindsym $mod+b exec brave-browser
     # Kill focused window
     bindsym $mod+x kill
 
