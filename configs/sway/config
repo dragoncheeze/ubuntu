@@ -63,7 +63,7 @@ output * bg ~/builds/ubuntu/wallpaper/outrun.jpg fill mode 1920x1080@75Hz max_re
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+n exec pcmanfm 
-    bindsym $mod+g exec flaptak run net.lutris.Lutris
+    bindsym $mod+g exec flatpak run net.lutris.Lutris
     bindsym $mod+b exec brave-browser
     # Kill focused window
     bindsym $mod+x kill
